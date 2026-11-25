@@ -1,0 +1,672 @@
+[
+ {
+  "id": "TC01",
+  "module": "Login",
+  "type": "Negative",
+  "desc": "Login with both fields empty",
+  "input": "username='', password=''",
+  "expected": "Error: Please enter username and password.",
+  "actual": "Please enter username and password.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC02",
+  "module": "Login",
+  "type": "Negative",
+  "desc": "Login with empty password",
+  "input": "student1 / ''",
+  "expected": "Error: Please enter username and password.",
+  "actual": "Please enter username and password.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC03",
+  "module": "Login",
+  "type": "Negative",
+  "desc": "Whitespace-only username",
+  "input": "'   ' / abc",
+  "expected": "Error: Please enter username and password.",
+  "actual": "Please enter username and password.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC04",
+  "module": "Login",
+  "type": "Functional",
+  "desc": "Unknown username triggers 'Save account' dialog",
+  "input": "student1 / Pass@123 (new)",
+  "expected": "Dialog 'Save this account?' shown",
+  "actual": "No account found for \"student1\". Do you want to save it and log in?",
+  "status": "Pass"
+ },
+ {
+  "id": "TC05",
+  "module": "Login",
+  "type": "Functional",
+  "desc": "Choose 'No' in save dialog",
+  "input": "Click No",
+  "expected": "Stay on login; message says account not saved",
+  "actual": "Account was not saved. Enter a saved username to login.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC06",
+  "module": "Login",
+  "type": "Functional",
+  "desc": "Choose 'Yes' saves account and logs in",
+  "input": "Click Yes, save & login",
+  "expected": "Instructions page, greeting shows username",
+  "actual": "student1",
+  "status": "Pass"
+ },
+ {
+  "id": "TC07",
+  "module": "Login",
+  "type": "Functional",
+  "desc": "Logout from instructions page",
+  "input": "Click Logout",
+  "expected": "Login screen shown",
+  "actual": "Login screen",
+  "status": "Pass"
+ },
+ {
+  "id": "TC08",
+  "module": "Login",
+  "type": "Functional",
+  "desc": "Login with saved valid credentials",
+  "input": "student1 / Pass@123",
+  "expected": "Instructions page opens (no save dialog)",
+  "actual": "Intro visible",
+  "status": "Pass"
+ },
+ {
+  "id": "TC09",
+  "module": "Login",
+  "type": "Negative",
+  "desc": "Existing user with wrong password",
+  "input": "student1 / WrongPass",
+  "expected": "Error: Incorrect password for this username.",
+  "actual": "Incorrect password for this username.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC10",
+  "module": "Login",
+  "type": "Equivalence",
+  "desc": "Password is case-sensitive",
+  "input": "student1 / pass@123",
+  "expected": "Incorrect password error",
+  "actual": "Incorrect password for this username.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC11",
+  "module": "Login",
+  "type": "Equivalence",
+  "desc": "Username is case-insensitive",
+  "input": "STUDENT1 / Pass@123",
+  "expected": "Login succeeds as 'student1'",
+  "actual": "intro=True, name=student1",
+  "status": "Pass"
+ },
+ {
+  "id": "TC12",
+  "module": "Login",
+  "type": "Usability",
+  "desc": "Enter key in password field submits login",
+  "input": "Press Enter",
+  "expected": "Logs in",
+  "actual": "Intro visible",
+  "status": "Pass"
+ },
+ {
+  "id": "TC13",
+  "module": "Login",
+  "type": "Usability",
+  "desc": "Enter in username moves focus to password",
+  "input": "Press Enter in username",
+  "expected": "Focus moves to password",
+  "actual": "focus on #pw",
+  "status": "Pass"
+ },
+ {
+  "id": "TC14",
+  "module": "Access Control",
+  "type": "Security",
+  "desc": "Exam cannot be started without logging in",
+  "input": "Trigger Start while not logged in",
+  "expected": "Redirected to login; exam hidden",
+  "actual": "Login shown, exam hidden",
+  "status": "Pass"
+ },
+ {
+  "id": "TC15",
+  "module": "Access Control",
+  "type": "Security",
+  "desc": "Only login screen visible on first load",
+  "input": "Open app",
+  "expected": "Intro, exam, result hidden",
+  "actual": "Only login visible",
+  "status": "Pass"
+ },
+ {
+  "id": "TC16",
+  "module": "Instructions",
+  "type": "Functional",
+  "desc": "Instructions show duration, question count and auto-submit rule",
+  "input": "Open instructions",
+  "expected": "60 minutes, 20 MCQs, auto-submit text present",
+  "actual": "True",
+  "status": "Pass"
+ },
+ {
+  "id": "TC17",
+  "module": "Exam",
+  "type": "Functional",
+  "desc": "Start exam shows Q1 of 20 and a 60:00 timer",
+  "input": "Click Start Examination",
+  "expected": "'Question 1 of 20', timer 60:00",
+  "actual": "Question 1 of 20; 60:00",
+  "status": "Pass"
+ },
+ {
+  "id": "TC18",
+  "module": "Exam",
+  "type": "Functional",
+  "desc": "Exam has exactly 20 questions and 20 navigator buttons",
+  "input": "Inspect exam",
+  "expected": "20 questions, 20 buttons",
+  "actual": "20 questions, 20 buttons",
+  "status": "Pass"
+ },
+ {
+  "id": "TC19",
+  "module": "Question Bank",
+  "type": "Functional",
+  "desc": "All bank questions are unique",
+  "input": "Inspect question bank",
+  "expected": "No duplicate questions",
+  "actual": "20 unique of 20",
+  "status": "Pass"
+ },
+ {
+  "id": "TC20",
+  "module": "Question Bank",
+  "type": "Functional",
+  "desc": "Each question has 4 distinct options",
+  "input": "Inspect all questions",
+  "expected": "0 questions with duplicate options",
+  "actual": "0 problem question(s)",
+  "status": "Pass"
+ },
+ {
+  "id": "TC21",
+  "module": "Question Bank",
+  "type": "Functional",
+  "desc": "Correct answer is always among the displayed options",
+  "input": "Inspect exam questions",
+  "expected": "True for all 20",
+  "actual": "True",
+  "status": "Pass"
+ },
+ {
+  "id": "TC22",
+  "module": "Question Bank",
+  "type": "Functional",
+  "desc": "Question order is randomised between attempts",
+  "input": "Start two exams",
+  "expected": "Different order each time",
+  "actual": "Different",
+  "status": "Pass"
+ },
+ {
+  "id": "TC23",
+  "module": "Navigation",
+  "type": "Boundary Value",
+  "desc": "Previous disabled on question 1",
+  "input": "Open Q1",
+  "expected": "Previous disabled",
+  "actual": "disabled",
+  "status": "Pass"
+ },
+ {
+  "id": "TC24",
+  "module": "Navigation",
+  "type": "Functional",
+  "desc": "Next moves to question 2",
+  "input": "Click Next",
+  "expected": "Question 2 of 20",
+  "actual": "Question 2 of 20",
+  "status": "Pass"
+ },
+ {
+  "id": "TC25",
+  "module": "Navigation",
+  "type": "Boundary Value",
+  "desc": "Next disabled on question 20",
+  "input": "Jump to Q20",
+  "expected": "Next disabled",
+  "actual": "disabled",
+  "status": "Pass"
+ },
+ {
+  "id": "TC26",
+  "module": "Navigation",
+  "type": "Functional",
+  "desc": "Navigator jumps to chosen question",
+  "input": "Click button 10",
+  "expected": "Question 10 of 20",
+  "actual": "Question 10 of 20",
+  "status": "Pass"
+ },
+ {
+  "id": "TC27",
+  "module": "Navigation",
+  "type": "Functional",
+  "desc": "Answer is remembered when moving away and back",
+  "input": "Pick option B, Next, Previous",
+  "expected": "Option B still selected",
+  "actual": "selected index 1",
+  "status": "Pass"
+ },
+ {
+  "id": "TC28",
+  "module": "Answering",
+  "type": "Functional",
+  "desc": "Changing answer keeps only one option selected",
+  "input": "Pick B, then C",
+  "expected": "Only C selected",
+  "actual": "1 selected, index 2",
+  "status": "Pass"
+ },
+ {
+  "id": "TC29",
+  "module": "Answering",
+  "type": "Functional",
+  "desc": "Answered question is marked in navigator and progress",
+  "input": "Answer Q1",
+  "expected": "'1/20 answered', button turns green",
+  "actual": "1/20 answered; class='ans cur'",
+  "status": "Pass"
+ },
+ {
+  "id": "TC30",
+  "module": "Answering",
+  "type": "Functional",
+  "desc": "Clear answer removes selection",
+  "input": "Click Clear answer",
+  "expected": "No option selected, '0/20 answered'",
+  "actual": "0 selected; 0/20 answered",
+  "status": "Pass"
+ },
+ {
+  "id": "TC31",
+  "module": "Answering",
+  "type": "Functional",
+  "desc": "Progress counter tracks several answers",
+  "input": "Answer Q1, Q6, Q20",
+  "expected": "'3/20 answered'",
+  "actual": "3/20 answered",
+  "status": "Pass"
+ },
+ {
+  "id": "TC32",
+  "module": "Timer",
+  "type": "Functional",
+  "desc": "Timer counts down every second",
+  "input": "Wait 5 seconds",
+  "expected": "59:55",
+  "actual": "59:55",
+  "status": "Pass"
+ },
+ {
+  "id": "TC33",
+  "module": "Timer",
+  "type": "Functional",
+  "desc": "Timer is not reset by navigating questions",
+  "input": "Next twice, wait 5 s",
+  "expected": "59:50",
+  "actual": "59:50",
+  "status": "Pass"
+ },
+ {
+  "id": "TC34",
+  "module": "Timer",
+  "type": "Boundary Value",
+  "desc": "Timer turns red at 05:00 remaining",
+  "input": "Advance to 55 minutes",
+  "expected": "05:00 with warning style",
+  "actual": "05:00, low=True",
+  "status": "Pass"
+ },
+ {
+  "id": "TC35",
+  "module": "Timer",
+  "type": "Boundary Value",
+  "desc": "One second before time-up exam is still running",
+  "input": "Advance to 59:59",
+  "expected": "00:01, exam visible",
+  "actual": "00:01, exam visible=True",
+  "status": "Pass"
+ },
+ {
+  "id": "TC36",
+  "module": "Auto-submit",
+  "type": "Boundary Value",
+  "desc": "Exam auto-submits at 00:00",
+  "input": "Advance to 60:00",
+  "expected": "Result page with 'Time is up' message",
+  "actual": "\u23f0 Time is up \u2014 your exam was submitted automatically.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC37",
+  "module": "Auto-submit",
+  "type": "Functional",
+  "desc": "Timer stops after submission (time taken stays fixed)",
+  "input": "Wait 2 more minutes",
+  "expected": "Time taken unchanged: 60:00",
+  "actual": "Time taken: 60:00 \u00b7 Passing mark: 40% -> Time taken: 60:00 \u00b7 Passing mark: 40%",
+  "status": "Pass"
+ },
+ {
+  "id": "TC38",
+  "module": "Submit",
+  "type": "Functional",
+  "desc": "Submit asks confirmation and shows unanswered count",
+  "input": "Click Submit with no answers",
+  "expected": "Dialog: 20 unanswered + time left",
+  "actual": "You have 20 unanswered question(s). Time left: 60:00.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC39",
+  "module": "Submit",
+  "type": "Functional",
+  "desc": "'Continue exam' closes the dialog and keeps exam",
+  "input": "Click Continue exam",
+  "expected": "Exam still visible",
+  "actual": "Exam continues",
+  "status": "Pass"
+ },
+ {
+  "id": "TC40",
+  "module": "Submit",
+  "type": "Functional",
+  "desc": "Dialog says all answered when none are skipped",
+  "input": "Answer all, Submit",
+  "expected": "'All questions answered'",
+  "actual": "All questions answered. Time left: 59:58.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC41",
+  "module": "Submit",
+  "type": "Functional",
+  "desc": "Manual submit shows success message",
+  "input": "Click Yes, submit",
+  "expected": "'Exam submitted successfully'",
+  "actual": "\u2705 Exam submitted successfully.",
+  "status": "Pass"
+ },
+ {
+  "id": "TC42",
+  "module": "Scoring",
+  "type": "Boundary Value",
+  "desc": "All 20 correct",
+  "input": "20 correct, 0 wrong, 0 skipped",
+  "expected": "20 / 20, PASS, 100%",
+  "actual": "20 / 20, PASS, 100%",
+  "status": "Pass"
+ },
+ {
+  "id": "TC43",
+  "module": "Scoring",
+  "type": "Boundary Value",
+  "desc": "All 20 wrong",
+  "input": "0 correct, 20 wrong, 0 skipped",
+  "expected": "0 / 20, FAIL, 0%",
+  "actual": "0 / 20, FAIL, 0%",
+  "status": "Pass"
+ },
+ {
+  "id": "TC44",
+  "module": "Scoring",
+  "type": "Boundary Value",
+  "desc": "No answers (all skipped)",
+  "input": "0 correct, 0 wrong, 20 skipped",
+  "expected": "0 / 20, FAIL, 0%",
+  "actual": "0 / 20, FAIL, 0%",
+  "status": "Pass"
+ },
+ {
+  "id": "TC45",
+  "module": "Scoring",
+  "type": "Boundary Value",
+  "desc": "8 correct = 40% (pass boundary)",
+  "input": "8 correct, 12 wrong, 0 skipped",
+  "expected": "8 / 20, PASS, 40%",
+  "actual": "8 / 20, PASS, 40%",
+  "status": "Pass"
+ },
+ {
+  "id": "TC46",
+  "module": "Scoring",
+  "type": "Boundary Value",
+  "desc": "7 correct = 35% (just below pass mark)",
+  "input": "7 correct, 13 wrong, 0 skipped",
+  "expected": "7 / 20, FAIL, 35%",
+  "actual": "7 / 20, FAIL, 35%",
+  "status": "Pass"
+ },
+ {
+  "id": "TC47",
+  "module": "Scoring",
+  "type": "Functional",
+  "desc": "Correct + wrong + skipped always equals 20",
+  "input": "5 correct, 5 wrong, 10 skipped",
+  "expected": "5 / 5 / 10",
+  "actual": "5 / 5 / 10",
+  "status": "Pass"
+ },
+ {
+  "id": "TC48",
+  "module": "Review",
+  "type": "Functional",
+  "desc": "Answer review lists all 20 questions with correct status",
+  "input": "Open review after mixed attempt",
+  "expected": "20 items: 5 correct, 5 wrong, 10 skipped",
+  "actual": "20 items: 5/5/10",
+  "status": "Pass"
+ },
+ {
+  "id": "TC49",
+  "module": "Review",
+  "type": "Functional",
+  "desc": "Wrong answers display the correct answer",
+  "input": "Inspect wrong items",
+  "expected": "Each shows 'Correct answer:'",
+  "actual": "True",
+  "status": "Pass"
+ },
+ {
+  "id": "TC50",
+  "module": "Review",
+  "type": "Functional",
+  "desc": "Time taken and pass mark shown on result",
+  "input": "Inspect result footer",
+  "expected": "'Time taken' and 'Passing mark: 40%'",
+  "actual": "Time taken: 00:00 \u00b7 Passing mark: 40%",
+  "status": "Pass"
+ },
+ {
+  "id": "TC51",
+  "module": "Result",
+  "type": "Functional",
+  "desc": "Logout from result page",
+  "input": "Click Logout",
+  "expected": "Login screen shown",
+  "actual": "Login shown",
+  "status": "Pass"
+ },
+ {
+  "id": "TC52",
+  "module": "Session",
+  "type": "Functional",
+  "desc": "logout() asks confirmation during an exam (called via console, no Logout button exists on exam screen)",
+  "input": "logout(): Cancel, then OK",
+  "expected": "Cancel stays in exam; OK returns to login",
+  "actual": "after cancel exam=True; after OK login=True; logout button visible on exam screen=False",
+  "status": "Pass"
+ },
+ {
+  "id": "TC53",
+  "module": "Security",
+  "type": "Security",
+  "desc": "Password is not stored in plain text",
+  "input": "Inspect localStorage 'examUsers'",
+  "expected": "Plain password absent (hashed)",
+  "actual": "{\"student1\":\"Pass@123Secret\"}",
+  "status": "Fail"
+ },
+ {
+  "id": "TC54",
+  "module": "Security",
+  "type": "Security",
+  "desc": "Credentials are not exposed in window.name",
+  "input": "Inspect window.name",
+  "expected": "No credentials in window.name",
+  "actual": "examUsers={\"student1\":\"Pass@123Secret\"}",
+  "status": "Fail"
+ },
+ {
+  "id": "TC55",
+  "module": "Security",
+  "type": "Security",
+  "desc": "Answer key is not readable from the browser console",
+  "input": "Evaluate BANK in console",
+  "expected": "Answer key inaccessible",
+  "actual": "BANK readable: correct answers exposed",
+  "status": "Fail"
+ },
+ {
+  "id": "TC56",
+  "module": "Security",
+  "type": "Security",
+  "desc": "XSS payload in username is escaped",
+  "input": "<img src=x onerror=alert(1)>",
+  "expected": "Shown as text; no script runs",
+  "actual": "img=0, alerts=[], text=<img src=x onerror=alert(1)>",
+  "status": "Pass"
+ },
+ {
+  "id": "TC57",
+  "module": "Security",
+  "type": "Security",
+  "desc": "SQL-injection style input does not bypass login",
+  "input": "' OR '1'='1' --",
+  "expected": "Treated as plain new username; no access without confirm",
+  "actual": "save dialog=True, intro=False",
+  "status": "Pass"
+ },
+ {
+  "id": "TC58",
+  "module": "Security",
+  "type": "Security",
+  "desc": "Reserved JS names like '__proto__' do not crash or bypass login",
+  "input": "__proto__ / abc",
+  "expected": "Handled as ordinary username; no JS error",
+  "actual": "dialog=True; errors=[]",
+  "status": "Pass"
+ },
+ {
+  "id": "TC59",
+  "module": "Security",
+  "type": "Boundary Value",
+  "desc": "1-character password is rejected by password policy",
+  "input": "weakuser / '1'",
+  "expected": "Rejected (minimum length enforced)",
+  "actual": "Accepted - account creation offered",
+  "status": "Fail"
+ },
+ {
+  "id": "TC60",
+  "module": "Session",
+  "type": "Functional",
+  "desc": "Exam progress and remaining time survive a page reload",
+  "input": "Answer 3, wait, reload",
+  "expected": "Exam resumes with answers and remaining time",
+  "actual": "login shown=True; new exam timer=60:00, 0/20 answered",
+  "status": "Fail"
+ },
+ {
+  "id": "TC61",
+  "module": "UI",
+  "type": "Usability",
+  "desc": "No horizontal scrolling on mobile (375 px) for login, exam, result",
+  "input": "Viewport 375x760",
+  "expected": "scrollWidth <= 375 on all screens",
+  "actual": "login/exam/result = [375, 375, 375]",
+  "status": "Pass"
+ },
+ {
+  "id": "TC62",
+  "module": "Accessibility",
+  "type": "Usability",
+  "desc": "Every input is programmatically linked to a label",
+  "input": "Inspect login form",
+  "expected": "0 inputs without a label link",
+  "actual": "2 input(s) without linked label",
+  "status": "Fail"
+ },
+ {
+  "id": "TC63",
+  "module": "Accessibility",
+  "type": "Usability",
+  "desc": "Answer options can be reached with the keyboard",
+  "input": "Check option elements",
+  "expected": "All 4 options focusable (tabindex >= 0)",
+  "actual": "4 of 4 not focusable",
+  "status": "Fail"
+ },
+ {
+  "id": "TC64",
+  "module": "UI",
+  "type": "Usability",
+  "desc": "Dark mode is applied automatically",
+  "input": "prefers-color-scheme: dark",
+  "expected": "Dark background",
+  "actual": "rgb(16, 20, 31)",
+  "status": "Pass"
+ },
+ {
+  "id": "TC65",
+  "module": "Performance",
+  "type": "Performance",
+  "desc": "Initial page load time",
+  "input": "Open index.html",
+  "expected": "Under 1000 ms",
+  "actual": "90 ms",
+  "status": "Pass"
+ },
+ {
+  "id": "TC66",
+  "module": "Performance",
+  "type": "Performance",
+  "desc": "Average question switch time",
+  "input": "Switch through 20 questions",
+  "expected": "Under 50 ms per switch",
+  "actual": "0.1 ms",
+  "status": "Pass"
+ },
+ {
+  "id": "TC67",
+  "module": "Performance",
+  "type": "Performance",
+  "desc": "Result and review generated quickly",
+  "input": "Submit full exam",
+  "expected": "Under 1000 ms",
+  "actual": "104 ms",
+  "status": "Pass"
+ }
+]

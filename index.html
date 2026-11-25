@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Online Examination System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. LOGIN -->
+<section id="login" class="card">
+  <div class="brand">🎓</div>
+  <h2 style="text-align:center">Online Examination</h2>
+  <p class="mut" style="text-align:center;margin-top:0">Login with your username and password</p>
+  <label>Username</label><input id="u" autocomplete="username" placeholder="Enter username">
+  <label>Password</label><input id="pw" type="password" autocomplete="current-password" placeholder="Enter password">
+  <div class="err" id="lerr"></div>
+  <button class="p" style="width:100%" id="lbtn">Login</button>
+</section>
+
+<!-- 2. INSTRUCTIONS (only after login) -->
+<section id="intro" class="hide">
+  <div class="top"><h2 style="margin:0">Welcome, <span id="name"></span></h2><button id="out">Logout</button></div>
+  <div class="card">
+    <h3>Software Testing — MCQ Examination</h3>
+    <ul class="rules">
+      <li>⏱ Duration: <b>60 minutes</b></li>
+      <li>📝 Total questions: <b>20 MCQs</b> (1 mark each, no negative marking)</li>
+      <li>↔ You can navigate freely between questions and change answers.</li>
+      <li>✅ You can submit the exam any time before the timer ends.</li>
+      <li>⚠ When 60 minutes are completed, the exam is <b>submitted automatically</b>.</li>
+      <li>📊 Your result is shown right after submission.</li>
+    </ul>
+    <button class="p" id="start">Start Examination</button>
+  </div>
+</section>
+
+<!-- 3. EXAM -->
+<section id="exam" class="hide">
+  <div class="bar"><div><b id="who"></b><div class="mut" style="font-size:13px" id="prog"></div></div><div id="timer">60:00</div><button class="d" id="sub">Submit</button></div>
+  <div class="grid">
+    <div class="card">
+      <div class="mut" id="qn"></div>
+      <h3 id="qt" style="font-size:19px;margin:6px 0 12px"></h3>
+      <div id="opts"></div>
+      <div class="nav">
+        <button id="prev">← Previous</button>
+        <button id="clr">Clear answer</button>
+        <button class="p" id="next">Next →</button>
+      </div>
+    </div>
+    <div class="card"><b>Question Navigator</b><div class="pal" id="pal" style="margin-top:10px"></div>
+      <div class="leg"><i></i>Answered<i class="n"></i>Not answered</div></div>
+  </div>
+</section>
+
+<!-- 8. RESULT -->
+<section id="res" class="hide">
+  <div class="card score">
+    <div id="rmsg" class="mut"></div>
+    <h2>Your Result</h2>
+    <div class="big" id="rs"></div>
+    <span class="badge" id="rb"></span>
+    <div class="stats"><div><b id="rc"></b>Correct</div><div><b id="rw"></b>Wrong</div><div><b id="ru"></b>Skipped</div><div><b id="rp"></b>Percent</div></div>
+    <div class="mut" id="rt"></div>
+    <div style="margin-top:14px"><button id="rout" class="p">Logout</button></div>
+  </div>
+  <h3 style="margin:20px 0 4px">Answer Review</h3><div id="rev"></div>
+</section>
+
+<div class="modal hide" id="sm"><div class="card">
+  <h3>Save this account?</h3><p id="sat" class="mut"></p>
+  <div style="display:flex;gap:8px;justify-content:flex-end"><button id="sno">No</button><button class="p" id="syes">Yes, save &amp; login</button></div>
+</div></div>
+
+<div class="modal hide" id="cm"><div class="card">
+  <h3>Submit examination?</h3><p id="cmt" class="mut"></p>
+  <div style="display:flex;gap:8px;justify-content:flex-end"><button id="cno">Continue exam</button><button class="d" id="cyes">Yes, submit</button></div>
+</div></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
